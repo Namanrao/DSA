@@ -1,29 +1,25 @@
 class Solution {
-    private int sum =0;
-    public  void solve(int [] nums, int index , ArrayList<Integer> arr){
-            if(index>= nums.length){
-                int temp = 0;
-                for(int i :arr){
-            temp = temp^i;
-                }
-                sum +=temp;
-                return ;
+    
+    public int solve(int [] nums, int index , ArrayList<Integer> arr){
+        if(index >= nums.length){
+            int temp =0;
+            for(int i :arr){
+                temp=temp^i;
             }
-            // add the element.
-            arr.add(nums[index]);
-            solve(nums, index+1, arr);
-            arr.remove(arr.size()-1);
-            solve(nums,index+1, arr);
+            return temp;
         }
+        // Do an element.
+        arr.add(nums[index]);
+        int left =solve(nums,index+1, arr);
+        // Undo an element
+        arr.remove(arr.size()-1);
+        int right = solve(nums,index+1,arr);
 
+        return left+ right ;
+    }
 
     public int subsetXORSum(int[] nums) {
-
-
         ArrayList<Integer> arr = new ArrayList<>();
-        solve(nums, 0 , arr);
-
-        return sum ;
-
+        return solve(nums, 0 , arr);
     }
 }
