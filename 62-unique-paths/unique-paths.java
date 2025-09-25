@@ -1,28 +1,22 @@
 class Solution {
-        // recursive + memoization
-    public int solve(int i , int j , int [][] dp){
-        if(i == 0 && j == 0){
-            return 1;
-        }
-        if(i<0 || j<0){
-            return 0;
-        }
-        if(dp[i][j]!=-1 ){
-            return dp[i][j];
-        }
+        // tabulation + memoization
 
-        int row = solve(i-1, j ,dp);
-        int column = solve(i,j-1,dp);
+    public int solve(int n , int m){
+        int [][] dp = new int [n+1][m+1];
+        for(int i= 0; i<n ;i++){
+            for(int j =0;j<m;j++){
+                if(i==0 || j==0 ){
+                    dp[i][j] =1;
+                }else{
+                    dp[i][j] = dp[i-1][j] + dp[i][j-1];
+                }
+            }
+        }
+                    return dp[n-1][m-1];
 
-        return dp[i][j]  =  row+ column;
     }
-
     public int uniquePaths(int m, int n) {
-        int dp [][] = new int[n+1][m+1];
-        for(int i =0 ;i<=n ;i++){
-            Arrays.fill(dp[i],-1);
-        }
-        int result =solve(n-1 ,m-1,dp);
+        int result =solve(n,m);
         return result;
     }
 }
