@@ -1,22 +1,14 @@
 class Solution {
 
     public double solve(double x1, double y1 , double x2 ,double y2 , double x3 , double y3){
-        double a  = Math.hypot(x1-x2, y1-y2);
-        double b  = Math.hypot(x2-x3, y2-y3);
-        double c  = Math.hypot(x1-x3, y1-y3);
-        double s = (a + b + c)/2.0;
-        double result = s*(s-a)*(s-b)*(s-c);
-        
-        if(result<0){
-            result = 0 ;
-        }
-        double f =  Math.sqrt(result);
-        return f;
+    double result = 0.5 * Math.abs(x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2));
+
+        return result ;
     }
 
     public double largestTriangleArea(int[][] points) {
         int n = points.length;
-        double result =0 ;
+        double result =0.0 ;
         for(int i = 0 ;i <n ;i++){
             for(int j = i+1 ;j<n ;j++){
                 for(int k = j+1 ; k<n ; k++){
