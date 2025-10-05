@@ -1,5 +1,6 @@
 class Solution {
-
+    // pure recursive solution -> time complexity -> O(2^n) 
+    // space complexity of -> o(N) recursive stack space
     public int  solve(int [] nums, int target , int sum , int index){
         if(index== nums.length){
             if(sum +1001 == target){
