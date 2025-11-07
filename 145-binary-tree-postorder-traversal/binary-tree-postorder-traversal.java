@@ -14,20 +14,17 @@
  * }
  */
 class Solution {
+    public void function(List<Integer> arr, TreeNode root){
+        if(root == null) return;
+        function(arr,root.left);
+        function(arr ,root.right);
+        arr.add(root.val);
+    }
     public List<Integer> postorderTraversal(TreeNode root) {
+        // recursive method of postorderTraversal
         List<Integer> arr = new ArrayList<>();
-        Stack<TreeNode> st = new Stack<>();
-        if(root==null) return arr;
-        st.add(root);
-        while(!st.isEmpty()){
-            TreeNode tempNode =st.pop();
-            arr.add(tempNode.val);
-            if(tempNode.left!=null) st.push(tempNode.left);
-            if(tempNode.right!=null) st.push(tempNode.right);
-        }
-        // reverse the arr 
-        Collections.reverse(arr);
-        // return the arr
+        if(root == null) return arr;
+        function(arr,root);
         return arr;
     }
 }
