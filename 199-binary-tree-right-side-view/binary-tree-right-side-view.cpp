@@ -26,10 +26,11 @@ public:
                 TreeNode* temp = q.front();
                 q.pop();
 
-                if(i == n -1) result.push_back(temp->val);
+                if(i ==0) result.push_back(temp->val);
 
-                if(temp->left ) q.push(temp->left);
                 if(temp->right) q.push(temp->right);
+                if(temp->left ) q.push(temp->left);
+                
             }
             
         }
