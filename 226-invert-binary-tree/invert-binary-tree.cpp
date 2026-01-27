@@ -11,27 +11,23 @@
  */
 class Solution {
 public:
-    void bfs(TreeNode* root){
-        queue<TreeNode*> q;
-        q.push(root);
-        while(!q.empty()){
-            int n = q.size();
-            TreeNode* node = q.front();
-            q.pop();
-            TreeNode* left = node->left;
-            TreeNode* right = node->right;
-            TreeNode* temp = left;
-            node->left = right;
-            node-> right = temp;
 
-            if(node->left) q.push(node->left);
-            if(node->right)q.push(node->right);
-        }
+    void dfs(TreeNode* node){
+        // post order traversal most probably
+        if(!node) return ;
+
+        TreeNode* temp = node->left;
+        node->left =node->right;
+        node->right = temp;
+
+        dfs(node->left);
+        dfs(node->right);
+        
     }
+
     TreeNode* invertTree(TreeNode* root) {
-        // first write a bfs template 
         if(!root) return NULL;
-        bfs(root);
+        dfs(root);
         return root;
     }
 };
